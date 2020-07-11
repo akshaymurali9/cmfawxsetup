@@ -20,7 +20,13 @@ sudo yum install ansible -y
 sudo ansible --version
 
 #Download the AWX package from the Github repository at any folder (assuming logged in as root user).
-sudo mkdir awx_setup
+if [ -d awx_setup ]; then
+	echo "awx_setup directory exists"
+	rm -rf awx_setup
+	sudo mkdir awx_setup
+  else
+	sudo mkdir awx_setup
+fi
 cd awx_setup
 sudo git clone -b 11.2.0 https://github.com/ansible/awx.git ## Where x.y.z is the version of a stable release(I used 11.2.0)
 
